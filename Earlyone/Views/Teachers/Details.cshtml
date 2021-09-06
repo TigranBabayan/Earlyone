@@ -1,0 +1,48 @@
+﻿@model Earlyone.Models.Teacher
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>@Model.FistName @Model.LastName </h4>
+    <hr />
+    <h5>My Students</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => Model.FistName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => Model.LastName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Teacher th in ViewBag.MyStudents)
+                {
+                    var students = th.Auditoria.Select(st => st.Student).ToList();
+                    foreach (var student in students)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.LastName)
+                    </td>
+                    <td>
+                        <a  asp-action="Edit" asp-controller="Journals" asp-route-id="@student.Id">Details</a>
+
+                    </td>
+                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

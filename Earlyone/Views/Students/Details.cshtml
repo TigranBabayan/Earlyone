@@ -1,0 +1,27 @@
+﻿@model Earlyone.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4> @Model.FirstName @Model.LastName</h4>
+    <hr />
+    @{
+        double average = 0;
+        int i = 0;
+        double sum = 0;
+    }
+    @foreach (var lesssonsScore in ViewBag.LessonsScore)
+    {
+        <p>@lesssonsScore.Lesson @lesssonsScore.Score</p>
+        i++;
+        sum += lesssonsScore.Score;
+        average = sum / i;
+
+    }
+    <p>Average = @average</p>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Earlyone.Models.Auditorium>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LessonName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teacher)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LessonName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.FullnameWithId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teacher.FullnameWithId)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

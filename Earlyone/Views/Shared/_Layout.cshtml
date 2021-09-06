@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Earlyone</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <h5>Earlyone</h5>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                @if (!string.IsNullOrWhiteSpace(Context.Session.GetString("UserName")))
+                {
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            @*@if (Context.Session.GetString("Role") == "Student")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">@Context.Session.GetString("UserName")</a>
+                                </li>
+                            }
+                            @if (Context.Session.GetString("Role") == "Teacher")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Teachers" asp-action="Index">@Context.Session.GetString("UserName")</a>
+                                </li>
+                            }*@
+
+                            @if (Context.Session.GetString("Role") == "Principal")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Lessons" asp-action="Index">Lessons</a>
+                                </li>
+                            }
+                            @if (Context.Session.GetString("Role") == "Principal")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Journals" asp-action="Index">Journal</a>
+                                </li>
+                            }
+
+                            @if (Context.Session.GetString("Role") == "Principal")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auditoriums" asp-action="Index">Auditoria</a>
+                                </li>
+
+                            }
+
+                        </ul>
+                    </div>
+                }
+                @if (!string.IsNullOrWhiteSpace(Context.Session.GetString("UserName")))
+                {
+                    <a class="nav-link text-dark float-right" asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+                }
+
+
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Earlyone - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
